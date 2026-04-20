@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI Travel Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Animated backdrop -->
+    <div class="blob blob1 dashboard-blob"></div>
+    <div class="blob blob2 dashboard-blob"></div>
+
+    <nav class="navbar glass-panel">
+        <div class="logo">🌍 AI SmartTravel</div>
+        <div class="user-profile">
+            <span class="avatar">OM</span>
+        </div>
+    </nav>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Widgets -->
+        <aside class="sidebar">
+             <div class="widget glass-panel">
+                 <h3>🌤 Global Weather</h3>
+                 <p>Detecting live conditions...</p>
+                 <div class="weather-mock">
+                     <span class="emoji-large">⛅</span>
+                     <span class="temp">24°C</span>
+                 </div>
+             </div>
+             
+             <div class="widget glass-panel">
+                 <h3>👥 City Crowd Pulse</h3>
+                 <div class="pulse-ring"></div>
+                 <p class="status">Moderately Busy</p>
+             </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <div class="glass-panel planner-card">
+                <h2>Plan Your Next Adventure</h2>
+                <form id="travelForm" class="neu-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Destination</label>
+                            <input type="text" id="dest" placeholder="e.g., Tokyo, Japan" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Days</label>
+                            <input type="number" id="days" value="2" min="1" max="14" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Interests</label>
+                            <div class="chips-container" id="interestsContainer">
+                                <div class="chip active" data-value="culture">🏛️ Culture</div>
+                                <div class="chip active" data-value="food">🍔 Food</div>
+                                <div class="chip" data-value="nature">⛰️ Nature</div>
+                                <div class="chip" data-value="adventure">🏂 Adventure</div>
+                                <div class="chip" data-value="shopping">🛍️ Shopping</div>
+                                <div class="chip" data-value="nightlife">🍸 Nightlife</div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Budget</label>
+                            <select id="budget">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">Luxury</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email for Calendar Sync</label>
+                        <input type="email" id="email" placeholder="Optional">
+                    </div>
+
+                    <button type="submit" class="submit-btn 3d-btn" id="generateBtn">
+                        <span class="btn-text">Generate Smart Itinerary 🚀</span>
+                        <div id="loaderContainer" class="loader-wrapper hidden">
+                            <div class="loader"></div>
+                            <span id="loadingPercentage" style="font-weight:600; font-size:0.95rem; min-width:35px; text-align:right;">0%</span>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsArea" class="results-area hidden">
+                <h2 class="gradient-text">Your Smart Timeline</h2>
+                <div id="timeline" class="timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
